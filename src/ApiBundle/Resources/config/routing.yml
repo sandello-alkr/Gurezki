@@ -1,0 +1,26 @@
+api:
+  resource: "@ApiBundle/Controller/Api/ApiController.php"
+  type:     annotation
+
+api_api_users:
+  resource: "@ApiBundle/Controller/Api/UsersController.php"
+  type:     annotation
+
+api_api_TaskList:
+  resource: "@ApiBundle/Controller/Api/TaskListController.php"
+  type:     annotation
+
+api_api_Task:
+  resource: "@ApiBundle/Controller/Api/TaskController.php"
+  type:     annotation
+
+api_api_pribileges:
+  resource: "@ApiBundle/Controller/Api/PrivilegesController.php"
+  type:     annotation
+
+api_api_groups:
+  resource: "@ApiBundle/Controller/Api/GroupsController.php"
+  type:     annotation
+
+
+

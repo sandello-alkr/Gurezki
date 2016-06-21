@@ -1,0 +1,9 @@
+#api_api:
+    #resource: "@ApiBundle/Controller/Api"
+    #type:     annotation
+api:
+    resource: "@ApiBundle/Resources/config/routing.yml"
+    prefix: /
+
+fos_oauth_server_token:
+   resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
