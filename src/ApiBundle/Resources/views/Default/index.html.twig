@@ -128,6 +128,8 @@ password:string
 			"client_secret":"26wzh2l1hmxwck8os8kc4c4owkok80c0kwk0gkscogsokssooo",
 			"grant_type":"password","username":"TEST","password":"1234"}
 		</pre>
+            <h2>Коды ошибок</h2>
+            <p>201 - пустое имя<br>202 - пустой email<br>203 - пустой пароль<br>204 - полльзователь с таким именем уже существует<br>205 - пользователь с таким email уже существует</p>
         </blockquote>
     </div>
 </div>
@@ -157,7 +159,7 @@ password:string
                 </tr>
                 <tr>
                     <td>
-                        GET
+                        POST
                     </td>
                     <td>
                         /oauth/v2/token
@@ -185,19 +187,23 @@ refresh_token:string
             </table>
             <h2>Пример</h2>
             <p>Запрос:</p>
-		 <pre>
-			$response = $client->get('oauth/v2/token?client_id=14_1brdylbp2ftwsc4sow4ww4gggo8ookwcsck0csg4wwgk4koskc&
-			client_secret=26wzh2l1hmxwck8os8kc4c4owkok80c0kwk0gkscogsokssooo&grant_type=password&username=TEST&password=1234');
-		</pre>
+            <pre>
+                $req = $client->createRequest('POST', 'oauth/v2/token', ['json' => ["client_id"=>"17_5u32ts0jgcso8c0ogkssg8kogogw8c8oc8skok0ckswkc000w8",
+                "client_secret"=>"43wbgjxck2g4ccg4o08gcgo4os8g8og0gsoscwgwckw4wk0840",
+                "grant_type"=>"password",
+                "username"=>"Николай Гурецкий",
+                "password"=>"1234"]]);
+                $response = $client->send($req);
+            </pre>
             <p>Ответ:</p>
-		<pre>	
-			HTTP/1.1 200 OK Host: localhost:8000 Connection: close Content-Type: application/json 
-			Cache-Control: no-store, private Pragma: no-cache X-Debug-Token: e56f0a 
-			X-Debug-Token-Link: http://localhost:8000/_profiler/e56f0a Date: Mon, 20 Jun 2016 06:38:33 GMT 
-			{"access_token":"NjM3YmI0M2JiNGVlY2EzMDRmNzk0YzEzZmNkYTA0OTNjN2YxODlhNWRmNDhkMDY0MTdhOTdjMTlhOGZmZWU4Yw",
-			"expires_in":3600,"token_type":"bearer","scope":null,
-			"refresh_token":"MGI4NDRiNDIyYWNhZDdmNmI3NTZiNzdkOTBkODY5NjI3ZTE5NjE0ODMwMWRmZGZjNGQ4Y2I2NmU1OTQzMzEyZA"}
-		</pre>
+            <pre>
+                HTTP/1.1 200 OK Host: localhost:8000 Connection: close Content-Type: application/json
+                Cache-Control: no-store, private Pragma: no-cache X-Debug-Token: e56f0a
+                X-Debug-Token-Link: http://localhost:8000/_profiler/e56f0a Date: Mon, 20 Jun 2016 06:38:33 GMT
+                {"access_token":"NjM3YmI0M2JiNGVlY2EzMDRmNzk0YzEzZmNkYTA0OTNjN2YxODlhNWRmNDhkMDY0MTdhOTdjMTlhOGZmZWU4Yw",
+                "expires_in":3600,"token_type":"bearer","scope":null,
+                "refresh_token":"MGI4NDRiNDIyYWNhZDdmNmI3NTZiNzdkOTBkODY5NjI3ZTE5NjE0ODMwMWRmZGZjNGQ4Y2I2NmU1OTQzMzEyZA"}
+            </pre>
             <p>Доступ запрещён или неверный токен:</p>
 		<pre>
 			HTTP/1.1 401 Unauthorized Host: localhost:8000 Connection: close 
@@ -210,6 +216,66 @@ refresh_token:string
     </div>
 </div>
 </div>
+
+<!--Восстановить пароль по email-->
+<div class="spoiler">
+    <input style="width:1000px;height:45px;" type="checkbox" tabindex="-1" >
+    <div class="box">
+        <span>Восстановить пароль по email</span>
+        <span class=close>Скрыть</span><span class=open>Показать</span>
+        <blockquote class="Untext">
+            <table>
+                <tr>
+                    <td>
+                        <h4>Метод</h4>
+                    </td>
+                    <td>
+                        <h4>URL</h4>
+                    </td>
+                    <td>
+                        <h4>Аргументы</h4>
+                    </td>
+                    <td>
+                        <h4>Ответ</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        POST
+                    </td>
+                    <td>
+                        /resetpassord
+                    </td>
+                    <td>
+				<pre>
+email:string
+				</pre>
+                    </td>
+                    <td>
+				<pre>
+-
+				</pre>
+                    </td>
+                </tr>
+            </table>
+            <h2>Пример</h2>
+            <p>Запрос:</p>
+            <pre>
+                $req = $client->createRequest('POST','resetpassord',['json' => ["email"=>"test3@gmail.com"]]);
+                $response = $client->send($req);
+            </pre>
+            <p>Ответ:</p>
+            <pre>
+                HTTP/1.1 200 OK Host: localhost:8000 Connection: close Content-Type: application/json
+                Cache-Control: no-store, private Pragma: no-cache X-Debug-Token: e56f0a
+                X-Debug-Token-Link: http://localhost:8000/_profiler/e56f0a Date: Mon, 20 Jun 2016 06:38:33 GMT
+            </pre>
+            <p>На указанный email будет выслан новый пароль</p>
+        </blockquote>
+    </div>
+</div>
+</div>
+
 
 <!--получить список пользователей-->
 <div class="spoiler">
@@ -591,12 +657,14 @@ email:string
 [{
 id:integer
 name:string
+level:integer
 }]
 
 				</pre>
                     </td>
                 </tr>
             </table>
+            <p>level - уровень доступа от 0 до 3. 0 - только просмотр листа; 1 - просмотр листа и возможность отмечать выполнение задач; 2 - возможность добавлять свои задачи к листу и раздавать; 3 - создатель(полный доступ, раздача привилегий, удаление задач, удаление списка)</p>
             <h2>Пример</h2>
             <p>Запрос:</p>
 		 <pre>
@@ -614,7 +682,7 @@ name:string
 		<pre>	
 			HTTP/1.1 200 OK Host: localhost:8000 Connection: close Cache-Control: no-cache Content-Type: application/json
 			X-Debug-Token: 77dbf5 X-Debug-Token-Link: http://localhost:8000/_profiler/77dbf5 Date: Mon, 20 Jun 2016 08:21:44 GMT
-			[{"id":12,"name":"3"},{"id":10,"name":"1"}]
+			[{"id":12,"name":"3","level":3},{"id":10,"name":"1","level":2}]
 		</pre>
         </blockquote>
     </div>

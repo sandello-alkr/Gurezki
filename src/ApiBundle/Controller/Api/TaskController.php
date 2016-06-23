@@ -88,7 +88,7 @@ class TaskController extends Controller
         $id = $request->get('id');
         $checked = $request->get('checked');
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery("SELECT t FROM ApiBundle:Tasklist t LEFT JOIN ApiBundle:Privileges p  WHERE t.id=p.taskListId WHERE p.userId='$userId'  AND t.id='$taskListId'");
+        $query = $em->createQuery("SELECT t FROM ApiBundle:Tasklist t LEFT JOIN ApiBundle:Privileges p  WHERE t.id=p.taskListId WHERE p.userId='$userId'  AND t.id='$taskListId' AND p.level>0");
         $list = $query->getOneOrNullResult();
         $response = new Response();
         if(!is_null($list)){

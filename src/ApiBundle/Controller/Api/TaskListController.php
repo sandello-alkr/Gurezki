@@ -64,14 +64,10 @@ class TaskListController extends Controller
         $userId = $this->get('security.context')->getToken()->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
         //$lists = $em->getRepository('ApiBundle:Tasklist')->findBy(array("userId"=>$userId));
-        $query = $em->createQuery("SELECT t FROM ApiBundle:Tasklist t LEFT JOIN ApiBundle:Privileges p  WHERE t.id=p.taskListId WHERE p.userId='$userId' AND p.level>0");
+        $query = $em->createQuery("SELECT t.id, t.name, p.level FROM ApiBundle:Tasklist t LEFT JOIN ApiBundle:Privileges p  WHERE t.id=p.taskListId WHERE p.userId='$userId' AND p.level>-1");
         $lists = $query->getResult();
-        $data = array();
-        foreach ($lists as $list){
-            array_push($data,array("id"=>$list->getId(),"name"=>$list->getName()));
-        }
         $response = new Response();
-        $response->setContent(json_encode($data));
+        $response->setContent(json_encode($lists));
         $response->setStatusCode(Response::HTTP_OK);
         $response->headers->set('Content-Type', 'application/json');
         return  $response;
@@ -83,7 +79,7 @@ class TaskListController extends Controller
     public function getListIdAction($id){
         $userId = $this->get('security.context')->getToken()->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery("SELECT t FROM ApiBundle:Tasklist t LEFT JOIN ApiBundle:Privileges p  WHERE t.id=p.taskListId WHERE p.userId='$userId' AND p.level>0 AND t.id='$id'");
+        $query = $em->createQuery("SELECT t FROM ApiBundle:Tasklist t LEFT JOIN ApiBundle:Privileges p  WHERE t.id=p.taskListId WHERE p.userId='$userId' AND p.level>-1 AND t.id='$id'");
         $list = $query->getOneOrNullResult();
         $response = new Response();
         if(!is_null($list)){

@@ -1,0 +1,6 @@
+
+http://127.0.0.1:8000/users?name=qwerty&password=1234&email=123@mail.ru
+{"client_id":"11_nf5ab0yd9n4844w8kk0g4k04cgo88s0ss8gg8s8k4wokcgo8o","client_secret":"30h5zgpnogmck4ooc40004sk4kocskg4s40w0ws8s0scg0gs0k","grant_type":"password","username":"qwerty","password":"1234"}
+
+
+{"access_token":"YTJmYTgxZjM3ZTdkYWQzOTU1MjM0ODRkZGY2ZjA3NTMzNDQ5N2YyZTE3YTc4NmE5YThjZTMxYTAzMjFjOTUzZA","expires_in":3600,"token_type":"bearer","scope":null,"refres

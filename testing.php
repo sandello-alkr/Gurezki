@@ -10,25 +10,14 @@ use GuzzleHttp\Client;
 $client = new Client([
     'base_url' => 'http://localhost:8000/',
     'defaults' => [
-        'headers' => ['Authorization' => 'Bearer NjkwMWJiOTk1MTg2ZWRmMjM4ZWQ4MzQyNTU5NzI3ZWFiYjQ5ZjkxNWY2Yzc4YTdmMmI3NWE1NDY4MTM3NTQzNQ'],
+        'headers' => ['Authorization' => 'Bearer YmU4YjU2NDg0ZmEyM2M2MDhhOGFiNjg1NWE0ZTQ1NzhiNzQyZTI1NjIwNzUyYzljZDcxZTIyNmI5MzEzYmYyOA'],
         'exceptions' => false
     ]
 ]);
     //авторизация
+    //$req = $client->createRequest('POST', 'oauth/v2/token', ['json' => ["client_id"=>"17_5u32ts0jgcso8c0ogkssg8kogogw8c8oc8skok0ckswkc000w8","client_secret"=>"43wbgjxck2g4ccg4o08gcgo4os8g8og0gsoscwgwckw4wk0840","grant_type"=>"password","username"=>"Николай Гурецкий","password"=>"y6J1Yl1dMp"]]);
+    //$req = $client->createRequest('POST','resetpassord',['json' => ["email"=>"test3@gmail.com"]]);
+    //$response = $client->send($req);
 
-   //$response = $client->get('oauth/v2/token?client_id=13_itp2b6b2rg0sksgkw4wo0kogk0o8csskkwcsk4g4kso0wgsg&client_secret=3p2yc18jflic8osgsogcwow0c8k884c00gs08c0wos8k8kk8gk&grant_type=password&username=gurezkiy&password=1234');
-    //$response = $client->get('/api/groups/1');
-    //регистрация
-   // $req = $client->createRequest('POST', 'register', ['json' => ["name"=>"TEST","email"=>"TEST@gmail.com","password"=>"1234"]]);
-    //$response = $client->send($req);
-    //$response = $client->get('api/privileges/list/10');
-    // $req = $client->createRequest('POST', 'users', ['json' => ['name' => 'gurezkiy',"email"=>"grezkiy@gmail.com","password"=>"12345678"]]);
-    //$response = $client->send($req);
-    //$response = $client->delete("api/tasklist/13");
-    //$req = $client->createRequest('PUT', 'api/privileges', ['json' => ["taskListId"=>"10","level"=>"1","id"=>"1"]]);
-    //$response = $client->send($req);
-    //$req = $client->createRequest('PUT', 'api/groups/1', ['json' => ["userId"=>"1"]]);
-    //$response = $client->send($req);
-    $response = $client->delete('api/groups/4');
 echo "<br>";
 echo $response;
